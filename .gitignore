@@ -1,0 +1,7 @@
+/*.log
+/.idea
+/storage
+/vendor
+/public/vendor
+.env
+docker-compose.yml

@@ -1,0 +1,98 @@
+/**
+ * Frontend scripts for CONCEPT.
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+
+    /**
+     * Keep flash toasts below the fixed navbar (height changes on scroll).
+     */
+    const syncSiteHeaderHeight = function() {
+        if (!navbar) {
+            return;
+        }
+        document.documentElement.style.setProperty(
+            '--site-header-height',
+            navbar.getBoundingClientRect().height + 'px'
+        );
+    };
+
+    /**
+     * Handle navbar transparency on scroll
+     */
+    const handleNavbarScroll = function() {
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            syncSiteHeaderHeight();
+        }
+    };
+
+    syncSiteHeaderHeight();
+    handleNavbarScroll();
+
+    window.addEventListener('scroll', handleNavbarScroll);
+    window.addEventListener('resize', syncSiteHeaderHeight);
+
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    initProviderBoard();
+});
+
+/**
+ * Interactive service provider toggles with live app.php preview.
+ */
+function initProviderBoard() {
+    const board = document.getElementById('provider-board');
+    const codeEl = document.getElementById('provider-code');
+
+    if (!board || !codeEl) {
+        return;
+    }
+
+    const renderProviderCode = function() {
+        const lines = ['return ['];
+
+        board.querySelectorAll('.provider-toggle').forEach(function(toggle) {
+            if (!toggle.checked) {
+                return;
+            }
+
+            lines.push('    ' + toggle.dataset.provider + '::class,');
+        });
+
+        lines.push('];');
+        codeEl.textContent = lines.join('\n');
+        codeEl.removeAttribute('data-highlighted');
+
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightElement(codeEl);
+        }
+    };
+
+    const syncChipState = function(toggle) {
+        const chip = toggle.closest('.provider-chip');
+        if (!chip) {
+            return;
+        }
+
+        chip.classList.toggle('provider-chip--on', toggle.checked);
+        chip.classList.toggle('provider-chip--off', !toggle.checked);
+    };
+
+    board.querySelectorAll('.provider-toggle').forEach(function(toggle) {
+        syncChipState(toggle);
+        toggle.addEventListener('change', function() {
+            syncChipState(toggle);
+            renderProviderCode();
+        });
+    });
+
+    renderProviderCode();
+}

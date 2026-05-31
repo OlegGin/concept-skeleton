@@ -1,0 +1,24 @@
+{% if flashes is defined and flashes|length > 0 %}
+    <div class="flash-messages">
+        {% for type, messages in flashes %}
+            {% set alert_type = type == 'error' ? 'danger' : (type == 'notice' ? 'info' : type) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ alert_type }} alert-dismissible fade show mb-0 shadow-sm" role="alert">
+                    <div class="flash-messages__body">
+                        {% if alert_type == 'success' %}
+                            <i class="bi bi-check-circle-fill flex-shrink-0 me-2" aria-hidden="true"></i>
+                        {% elseif alert_type == 'danger' %}
+                            <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" aria-hidden="true"></i>
+                        {% elseif alert_type == 'warning' %}
+                            <i class="bi bi-exclamation-circle-fill flex-shrink-0 me-2" aria-hidden="true"></i>
+                        {% else %}
+                            <i class="bi bi-info-circle-fill flex-shrink-0 me-2" aria-hidden="true"></i>
+                        {% endif %}
+                        <div>{{ message }}</div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
