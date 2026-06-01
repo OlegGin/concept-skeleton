@@ -43,7 +43,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     initProviderBoard();
+    initSmoothScroll();
 });
+
+/**
+ * Smooth scroll for in-page anchor links (fixed navbar offset handled by scroll-margin in CSS).
+ */
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var id = this.getAttribute('href');
+            if (!id || id.length < 2) {
+                return;
+            }
+
+            var target = document.querySelector(id);
+            if (!target) {
+                return;
+            }
+
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+}
 
 /**
  * Interactive service provider toggles with live app.php preview.

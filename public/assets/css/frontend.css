@@ -16,6 +16,10 @@ body {
     line-height: 1.6;
 }
 
+[id] {
+    scroll-margin-top: calc(var(--site-header-height, 5.75rem) + 1rem);
+}
+
 /* Flash messages (above fixed navbar, Bootstrap z-index 1030) */
 .flash-messages {
     --flash-offset: 0.75rem;
@@ -387,6 +391,10 @@ footer {
 .stack-pill:hover {
     border-color: #ccc;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+a.stack-pill:hover {
+    color: #111;
 }
 
 .stack-pill i {

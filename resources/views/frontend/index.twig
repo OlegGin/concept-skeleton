@@ -8,7 +8,11 @@
     <div class="container text-center position-relative">
         <div class="landing-hero__badge">
             <span class="landing-hero__badge-dot" aria-hidden="true"></span>
-            php-concept/core · PSR-first · PHP 8.4+
+            <a href="https://github.com/php-concept/concept-skeleton" class="text-decoration-none text-reset" target="_blank" rel="noopener">
+                concept-skeleton
+            </a>
+            <span class="text-muted" aria-hidden="true">·</span>
+            concept-core · PSR-compatibility · PHP 8.4+
         </div>
         <h1 class="hero-title">
             Build fast.<br>
@@ -20,8 +24,13 @@
             not hidden behind magic.
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
-            <a href="#features" class="btn btn-dark btn-lg px-4 rounded-pill">Explore features</a>
-            <a href="#cli" class="btn btn-outline-dark btn-lg px-4 rounded-pill">CLI toolkit</a>
+            <a href="#quickstart" class="btn btn-dark btn-lg px-4 rounded-pill">Quick start</a>
+            <a href="#features" class="btn btn-outline-dark btn-lg px-4 rounded-pill">Explore features</a>
+            <a href="https://php-concept.github.io/concept-docs/en/index.html"
+               class="btn btn-outline-dark btn-lg px-4 rounded-pill"
+               target="_blank" rel="noopener">
+                Documentation <i class="bi bi-box-arrow-up-right ms-1 small"></i>
+            </a>
         </div>
         <div class="landing-stats">
             <div class="landing-stat">
@@ -29,8 +38,8 @@
                 <span>core source classes</span>
             </div>
             <div class="landing-stat">
-                <strong>11</strong>
-                <span>service providers</span>
+                <strong>12</strong>
+                <span>HTTP providers</span>
             </div>
             <div class="landing-stat">
                 <strong>9</strong>
@@ -66,6 +75,92 @@
     </div>
 </section>
 
+{# ── Quick start ── #}
+<section class="content-block pt-0 pb-5" id="quickstart">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">Get running</span>
+            <h2 class="fw-bold mb-3">From clone to landing page</h2>
+            <p class="text-muted mx-auto mb-0" style="max-width: 640px;">
+                This skeleton ships a working HTTP + Twig demo. Clone it, configure <code>.env</code>,
+                point your web server at <code>public/</code>, and iterate.
+            </p>
+        </div>
+
+        <div class="row g-4 g-lg-5">
+            <div class="col-lg-4">
+                <article class="feature-card h-100 p-4 p-md-5 mb-0">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <span class="pipeline-step__num">1</span>
+                        <h3 class="fw-bold h5 mb-0">Clone &amp; install</h3>
+                    </div>
+                    <div class="code-window">
+                        <div class="code-window__bar">
+                            <span class="code-window__dot" style="background:#ff5f56"></span>
+                            <span class="code-window__dot" style="background:#ffbd2e"></span>
+                            <span class="code-window__dot" style="background:#27c93f"></span>
+                        </div>
+                        <pre><code class="language-bash">git clone https://github.com/php-concept/concept-skeleton.git app
+cd app
+composer install</code></pre>
+                    </div>
+                    <p class="text-muted small mb-0">Requires PHP 8.4+ and Composer 2.x.</p>
+                </article>
+            </div>
+
+            <div class="col-lg-4">
+                <article class="feature-card h-100 p-4 p-md-5 mb-0">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <span class="pipeline-step__num">2</span>
+                        <h3 class="fw-bold h5 mb-0">Configure environment</h3>
+                    </div>
+                    <div class="code-window">
+                        <div class="code-window__bar">
+                            <span class="code-window__dot" style="background:#ff5f56"></span>
+                            <span class="code-window__dot" style="background:#ffbd2e"></span>
+                            <span class="code-window__dot" style="background:#27c93f"></span>
+                        </div>
+                        <pre><code class="language-bash">cp .env.example .env
+# APP_ENV, APP_DEBUG, database credentials…</code></pre>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        Env-specific overrides live in <code>config/dev/</code> and <code>config/production/</code>.
+                    </p>
+                </article>
+            </div>
+
+            <div class="col-lg-4">
+                <article class="feature-card h-100 p-4 p-md-5 mb-0">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <span class="pipeline-step__num">3</span>
+                        <h3 class="fw-bold h5 mb-0">Serve &amp; explore</h3>
+                    </div>
+                    <div class="code-window">
+                        <div class="code-window__bar">
+                            <span class="code-window__dot" style="background:#ff5f56"></span>
+                            <span class="code-window__dot" style="background:#ffbd2e"></span>
+                            <span class="code-window__dot" style="background:#27c93f"></span>
+                        </div>
+                        <pre><code class="language-bash"># Document root → public/
+php bin/console route:list</code></pre>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        Docker setup is included — see <code>docker-compose.yml.example</code> in the repo.
+                    </p>
+                </article>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="https://php-concept.github.io/concept-docs/en/installation.html"
+               class="btn btn-outline-dark btn-sm rounded-pill"
+               target="_blank" rel="noopener">
+                Installation guide <i class="bi bi-box-arrow-up-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
 {# ── Bento features ── #}
 <section class="content-block bg-light" id="features">
     <div class="container">
@@ -73,8 +168,8 @@
             <span class="section-label">Core capabilities</span>
             <h2 class="fw-bold">Everything in <code>vendor/php-concept/core/src</code></h2>
             <p class="text-muted mx-auto" style="max-width: 640px;">
-                Modular providers you enable in <code>bootstrap/providers/app.php</code>.
-                This skeleton ships HTTP + Views out of the box; flip on DB, validation, events, and more when you need them.
+                Twelve HTTP providers are enabled by default in <code>bootstrap/providers/app.php</code>.
+                Comment out modules you do not need yet — DB, validation, components, and the rest stay wired and ready.
             </p>
         </div>
 
@@ -97,6 +192,12 @@
                     <pre><code class="language-php">// routes/web.php
 $router->get('/', [IndexController::class, 'index'])->setName('home');</code></pre>
                 </div>
+                <p class="text-muted small mb-0 mt-3">
+                    <a href="https://php-concept.github.io/concept-docs/en/routing.html"
+                       class="text-decoration-none" target="_blank" rel="noopener">
+                        Routing guide <i class="bi bi-box-arrow-up-right ms-1"></i>
+                    </a>
+                </p>
             </article>
 
             <article class="bento-card">
@@ -307,7 +408,7 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
             <a href="https://php-concept.github.io/concept-docs/en/directory-structure.html"
                class="btn btn-outline-dark btn-sm rounded-pill mt-2"
                target="_blank" rel="noopener">
-                Full guide <i class="bi bi-box-arrow-up-right ms-1"></i>
+                Directory Structure docs <i class="bi bi-box-arrow-up-right ms-1"></i>
             </a>
         </div>
     </div>
@@ -323,6 +424,8 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
                 <p class="text-muted mb-0">
                     Each provider registers a slice of the framework. Toggle modules below to preview how
                     <code>bootstrap/providers/app.php</code> changes — disabled providers are omitted from the array.
+                    CLI commands use a separate stack in <code>bootstrap/providers/console.php</code>
+                    (<code>ConsoleServiceProvider</code> is not part of the HTTP boot).
                 </p>
             </div>
         </div>
@@ -409,6 +512,11 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
                     <li class="mb-2"><i class="bi bi-check-lg text-dark me-2"></i><code>ForceJsonResponseMiddleware</code></li>
                     <li class="mb-0"><i class="bi bi-check-lg text-dark me-2"></i><code>StorePreviousUrlMiddleware</code></li>
                 </ul>
+                <a href="https://php-concept.github.io/concept-docs/en/middleware.html"
+                   class="btn btn-outline-dark btn-sm rounded-pill mt-4"
+                   target="_blank" rel="noopener">
+                    Middleware docs <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
             </div>
             <div class="col-lg-7">
                 <div class="feature-card p-4 p-md-5">
@@ -551,7 +659,8 @@ public function getFunctions(): array
             <span class="section-label">Symfony Console</span>
             <h2 class="fw-bold">Ship with a full CLI toolkit</h2>
             <p class="text-muted mx-auto" style="max-width: 560px;">
-                Run via <code>php bin/console</code> (when ConsoleServiceProvider is enabled).
+                Run via <code>php bin/console</code>. Commands register through
+                <code>bootstrap/providers/console.php</code> — a leaner stack than the HTTP boot.
                 Inspect routes, migrations, components, and clear compiled views.
             </p>
         </div>
@@ -606,8 +715,90 @@ public function getFunctions(): array
     </div>
 </section>
 
+{# ── Documentation ── #}
+<section class="content-block bg-light" id="docs">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">Learn more</span>
+            <h2 class="fw-bold mb-3">Concept Core documentation</h2>
+            <p class="text-muted mx-auto mb-0" style="max-width: 640px;">
+                Deep dives for routing, middleware, configuration, and project layout —
+                maintained alongside <a href="https://github.com/php-concept/concept-core" target="_blank" rel="noopener">php-concept/core</a>.
+            </p>
+        </div>
+
+        <div class="stack-strip mb-4">
+            <a href="https://php-concept.github.io/concept-docs/en/installation.html"
+               class="stack-pill text-decoration-none" target="_blank" rel="noopener">
+                <i class="bi bi-download"></i> Installation
+            </a>
+            <a href="https://php-concept.github.io/concept-docs/en/configuration.html"
+               class="stack-pill text-decoration-none" target="_blank" rel="noopener">
+                <i class="bi bi-sliders"></i> Configuration
+            </a>
+            <a href="https://php-concept.github.io/concept-docs/en/request-lifecycle.html"
+               class="stack-pill text-decoration-none" target="_blank" rel="noopener">
+                <i class="bi bi-arrow-repeat"></i> Request lifecycle
+            </a>
+            <a href="https://php-concept.github.io/concept-docs/en/routing.html"
+               class="stack-pill text-decoration-none" target="_blank" rel="noopener">
+                <i class="bi bi-signpost-split"></i> Routing
+            </a>
+            <a href="https://php-concept.github.io/concept-docs/en/middleware.html"
+               class="stack-pill text-decoration-none" target="_blank" rel="noopener">
+                <i class="bi bi-layers"></i> Middleware
+            </a>
+            <a href="https://php-concept.github.io/concept-docs/en/controllers.html"
+               class="stack-pill text-decoration-none" target="_blank" rel="noopener">
+                <i class="bi bi-code-square"></i> Controllers
+            </a>
+            <a href="https://php-concept.github.io/concept-docs/en/directory-structure.html"
+               class="stack-pill text-decoration-none" target="_blank" rel="noopener">
+                <i class="bi bi-folder2-open"></i> Directory structure
+            </a>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <article class="feature-card h-100 p-4 mb-0">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="bento-card__icon mb-0 flex-shrink-0"><i class="bi bi-box-seam"></i></div>
+                        <div>
+                            <h3 class="fw-bold h5 mb-2">concept-skeleton</h3>
+                            <p class="text-muted small mb-3">
+                                This starter app — landing page, <code>src/App/</code> layout, Docker, and default provider stack.
+                            </p>
+                            <a href="https://github.com/php-concept/concept-skeleton"
+                               class="btn btn-dark btn-sm rounded-pill" target="_blank" rel="noopener">
+                                <i class="bi bi-github me-1"></i> View repository
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-6 col-lg-5">
+                <article class="feature-card h-100 p-4 mb-0">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="bento-card__icon mb-0 flex-shrink-0"><i class="bi bi-cpu"></i></div>
+                        <div>
+                            <h3 class="fw-bold h5 mb-2">php-concept/core</h3>
+                            <p class="text-muted small mb-3">
+                                The framework package — providers, middlewares, console commands, and PSR integrations.
+                            </p>
+                            <a href="https://github.com/php-concept/concept-core"
+                               class="btn btn-outline-dark btn-sm rounded-pill" target="_blank" rel="noopener">
+                                <i class="bi bi-github me-1"></i> View core
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
 {# ── Observability ── #}
-<section class="content-block bg-light">
+<section class="content-block" id="observability">
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6">
@@ -674,27 +865,18 @@ return [
                 </p>
             </div>
             <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-center justify-content-lg-end">
-                <a href="{{ path('home') }}" class="btn btn-light rounded-pill px-4">Refresh demo</a>
-                <a href="https://github.com/php-concept/concept-core" class="btn btn-outline-light rounded-pill px-4" target="_blank" rel="noopener">
-                    View on GitHub
+                <a href="https://php-concept.github.io/concept-docs/en/index.html"
+                   class="btn btn-light rounded-pill px-4"
+                   target="_blank" rel="noopener">
+                    Documentation
+                </a>
+                <a href="https://github.com/php-concept/concept-skeleton"
+                   class="btn btn-outline-light rounded-pill px-4"
+                   target="_blank" rel="noopener">
+                    <i class="bi bi-github me-1"></i> Skeleton
                 </a>
             </div>
         </div>
     </div>
 </section>
-{% endblock %}
-
-{% block scripts %}
-<script>
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-        anchor.addEventListener('click', function(e) {
-            var id = this.getAttribute('href');
-            if (id.length < 2) return;
-            var target = document.querySelector(id);
-            if (!target) return;
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-</script>
 {% endblock %}
