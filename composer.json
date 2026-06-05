@@ -1,5 +1,6 @@
 {
     "name": "php-concept/skeleton",
+    "version": "1.0.0",
     "autoload": {
         "psr-4": {
             "Concept\\": "src/",
