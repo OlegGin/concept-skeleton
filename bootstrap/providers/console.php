@@ -11,9 +11,9 @@ use Concept\Core\Providers\SessionServiceProvider;
 
 return [
     ConfigServiceProvider::class,
+    ErrorHandlerServiceProvider::class,
     HttpServiceProvider::class,
     SessionServiceProvider::class,
-    ErrorHandlerServiceProvider::class,
     LogServiceProvider::class,
     DatabaseServiceProvider::class,
     ConsoleServiceProvider::class,

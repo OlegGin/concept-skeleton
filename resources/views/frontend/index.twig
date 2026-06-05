@@ -39,7 +39,7 @@
             </div>
             <div class="landing-stat">
                 <strong>12</strong>
-                <span>HTTP providers</span>
+                <span>providers</span>
             </div>
             <div class="landing-stat">
                 <strong>9</strong>
@@ -80,7 +80,7 @@
     <div class="container">
         <div class="text-center mb-5">
             <span class="section-label">Get running</span>
-            <h2 class="fw-bold mb-3">From clone to landing page</h2>
+            <h2 class="fw-bold mb-3">From clone to application</h2>
             <p class="text-muted mx-auto mb-0" style="max-width: 640px;">
                 This skeleton ships a working HTTP + Twig demo. Clone it, configure <code>.env</code>,
                 point your web server at <code>public/</code>, and iterate.
@@ -155,7 +155,7 @@ php bin/console route:list</code></pre>
             <a href="https://php-concept.github.io/concept-docs/en/installation.html"
                class="btn btn-outline-dark btn-sm rounded-pill"
                target="_blank" rel="noopener">
-                Installation guide <i class="bi bi-box-arrow-up-right ms-1"></i>
+                Read more <i class="bi bi-box-arrow-up-right ms-1"></i>
             </a>
         </div>
     </div>
@@ -195,7 +195,7 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
                 <p class="text-muted small mb-0 mt-3">
                     <a href="https://php-concept.github.io/concept-docs/en/routing.html"
                        class="text-decoration-none" target="_blank" rel="noopener">
-                        Routing guide <i class="bi bi-box-arrow-up-right ms-1"></i>
+                        Read more <i class="bi bi-box-arrow-up-right ms-1"></i>
                     </a>
                 </p>
             </article>
@@ -408,7 +408,7 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
             <a href="https://php-concept.github.io/concept-docs/en/directory-structure.html"
                class="btn btn-outline-dark btn-sm rounded-pill mt-2"
                target="_blank" rel="noopener">
-                Directory Structure docs <i class="bi bi-box-arrow-up-right ms-1"></i>
+                Read more <i class="bi bi-box-arrow-up-right ms-1"></i>
             </a>
         </div>
     </div>
@@ -491,6 +491,14 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
             </div>
         </div>
     </div>
+
+    <div class="text-center mt-5">
+        <a href="https://php-concept.github.io/concept-docs/en/service-providers.html#registration"
+           class="btn btn-outline-dark btn-sm rounded-pill"
+           target="_blank" rel="noopener">
+            Read more <i class="bi bi-box-arrow-up-right ms-1"></i>
+        </a>
+    </div>
 </section>
 
 {# ── Middleware pipeline ── #}
@@ -515,7 +523,7 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
                 <a href="https://php-concept.github.io/concept-docs/en/middleware.html"
                    class="btn btn-outline-dark btn-sm rounded-pill mt-4"
                    target="_blank" rel="noopener">
-                    Middleware docs <i class="bi bi-box-arrow-up-right ms-1"></i>
+                    Read more <i class="bi bi-box-arrow-up-right ms-1"></i>
                 </a>
             </div>
             <div class="col-lg-7">
@@ -801,7 +809,7 @@ public function getFunctions(): array
 <section class="content-block" id="observability">
     <div class="container">
         <div class="row g-5 align-items-center">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <span class="section-label">Observability</span>
                 <h2 class="fw-bold mb-3">Logs, events, and safe failures</h2>
                 <p class="text-muted mb-4">
@@ -809,44 +817,29 @@ public function getFunctions(): array
                     plain PHP views in <code>resources/views/errors/fallback/</code> if Twig is unavailable.
                 </p>
                 <div class="row g-3">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="feature-card p-4 h-100 mb-0">
                             <i class="bi bi-file-earmark-text feature-icon"></i>
                             <h5 class="fw-bold">Rotating logs</h5>
                             <p class="text-muted small mb-0">Monolog → <code>storage/logs/app-*.log</code> with level and retention from config.</p>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="feature-card p-4 h-100 mb-0">
                             <i class="bi bi-activity feature-icon"></i>
                             <h5 class="fw-bold">Lifecycle events</h5>
                             <p class="text-muted small mb-0">Router dispatch, template render, query executed — hook telemetry or custom listeners.</p>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="code-window">
-                    <div class="code-window__bar">
-                        <span class="code-window__dot" style="background:#ff5f56"></span>
-                        <span class="code-window__dot" style="background:#ffbd2e"></span>
-                        <span class="code-window__dot" style="background:#27c93f"></span>
+                    <div class="col-sm-4">
+                        <div class="feature-card p-4 h-100 mb-0">
+                            <i class="bi bi-diagram-3 feature-icon"></i>
+                            <h5 class="fw-bold">Telemetry buffer</h5>
+                            <p class="text-muted small mb-0">
+                                <code>ApplicationTelemetryBuffer</code> collects structured events for in-request inspection (counts, records, and spans).
+                            </p>
+                        </div>
                     </div>
-                    <pre><code class="language-php">// bootstrap/providers/app.php — you control the stack
-return [
-    ConfigServiceProvider::class,
-    ErrorHandlerServiceProvider::class,
-    EventServiceProvider::class,
-    HttpServiceProvider::class,
-    SessionServiceProvider::class,
-    LogServiceProvider::class,
-    ViewServiceProvider::class,
-    MaskerServiceProvider::class,
-    ValidationServiceProvider::class,
-    DatabaseServiceProvider::class,
-    CastingServiceProvider::class,
-    ComponentsServiceProvider::class,
-];</code></pre>
                 </div>
             </div>
         </div>
