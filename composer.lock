@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be173c193d703e13d452d3a7ddc49208",
+    "content-hash": "0f66df2156af8fba030b864d3b00ccf9",
     "packages": [
         {
             "name": "brick/math",
@@ -1539,30 +1539,26 @@
             "time": "2026-03-19T18:52:39+00:00"
         },
         {
-            "name": "league/event",
-            "version": "3.0.3",
+            "name": "league/plates",
+            "version": "v3.6.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/event.git",
-                "reference": "ec38ff7ea10cad7d99a79ac937fbcffb9334c210"
+                "url": "https://github.com/thephpleague/plates.git",
+                "reference": "12ee65166adbc6fb5916fb80b0c0758e49a2d996"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/event/zipball/ec38ff7ea10cad7d99a79ac937fbcffb9334c210",
-                "reference": "ec38ff7ea10cad7d99a79ac937fbcffb9334c210",
+                "url": "https://api.github.com/repos/thephpleague/plates/zipball/12ee65166adbc6fb5916fb80b0c0758e49a2d996",
+                "reference": "12ee65166adbc6fb5916fb80b0c0758e49a2d996",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.0",
-                "psr/event-dispatcher": "^1.0"
-            },
-            "provide": {
-                "psr/event-dispatcher-implementation": "1.0"
+                "php": "^8.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "phpstan/phpstan": "^0.12.45",
-                "phpunit/phpunit": "^8.5"
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": "^11.4",
+                "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
             "extra": {
@@ -1572,7 +1568,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "League\\Event\\": "src/"
+                    "League\\Plates\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1581,21 +1577,30 @@
             ],
             "authors": [
                 {
-                    "name": "Frank de Jonge",
-                    "email": "info@frenky.net"
+                    "name": "Jonathan Reinink",
+                    "email": "jonathan@reinink.ca",
+                    "role": "Developer"
+                },
+                {
+                    "name": "RJ Garcia",
+                    "email": "ragboyjr@icloud.com",
+                    "role": "Developer"
                 }
             ],
-            "description": "Event package",
+            "description": "Plates, the native PHP template system that's fast, easy to use and easy to extend.",
+            "homepage": "https://platesphp.com",
             "keywords": [
-                "emitter",
-                "event",
-                "listener"
+                "league",
+                "package",
+                "templates",
+                "templating",
+                "views"
             ],
             "support": {
-                "issues": "https://github.com/thephpleague/event/issues",
-                "source": "https://github.com/thephpleague/event/tree/3.0.3"
+                "issues": "https://github.com/thephpleague/plates/issues",
+                "source": "https://github.com/thephpleague/plates/tree/v3.6.0"
             },
-            "time": "2024-09-04T16:06:53+00:00"
+            "time": "2024-11-02T15:03:35+00:00"
         },
         {
             "name": "league/route",
@@ -1989,16 +1994,16 @@
         },
         {
             "name": "php-concept/core",
-            "version": "v1.0.10",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-concept/concept-core.git",
-                "reference": "c01b1b359040a06b600c74dfd3c76df988ac9654"
+                "reference": "be4c6e4f2aba88b454922e6df01c5020600f492e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-concept/concept-core/zipball/c01b1b359040a06b600c74dfd3c76df988ac9654",
-                "reference": "c01b1b359040a06b600c74dfd3c76df988ac9654",
+                "url": "https://api.github.com/repos/php-concept/concept-core/zipball/be4c6e4f2aba88b454922e6df01c5020600f492e",
+                "reference": "be4c6e4f2aba88b454922e6df01c5020600f492e",
                 "shasum": ""
             },
             "require": {
@@ -2012,10 +2017,11 @@
                 "laminas/laminas-diactoros": "^3.8",
                 "laminas/laminas-httphandlerrunner": "^2.13",
                 "league/container": "^5.1",
-                "league/event": "^3.0",
+                "league/plates": "^3.6",
                 "league/route": "^6.2",
                 "magewirephp/validation": "^1.0",
                 "monolog/monolog": "^3.10",
+                "php": "^8.4",
                 "symfony/console": "^8.0",
                 "symfony/filesystem": "^8.0",
                 "symfony/http-foundation": "^8.0",
@@ -2039,9 +2045,9 @@
             "description": "Concept Framework Core Engine",
             "support": {
                 "issues": "https://github.com/php-concept/concept-core/issues",
-                "source": "https://github.com/php-concept/concept-core/tree/v1.1.1"
+                "source": "https://github.com/php-concept/concept-core/tree/v1.1.5"
             },
-            "time": "2026-06-05T07:13:23+00:00"
+            "time": "2026-06-09T13:16:36+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -3311,16 +3317,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.38.1",
+            "version": "v1.38.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "14c5439eec4ccff081ac14eca2dc57feb2a66d92"
+                "reference": "d3d318bad5e7a1bfbd026009c8bfb8d8f99ae6b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/14c5439eec4ccff081ac14eca2dc57feb2a66d92",
-                "reference": "14c5439eec4ccff081ac14eca2dc57feb2a66d92",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d3d318bad5e7a1bfbd026009c8bfb8d8f99ae6b6",
+                "reference": "d3d318bad5e7a1bfbd026009c8bfb8d8f99ae6b6",
                 "shasum": ""
             },
             "require": {
@@ -3372,7 +3378,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.38.1"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.38.2"
             },
             "funding": [
                 {
@@ -3392,7 +3398,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-26T12:51:13+00:00"
+            "time": "2026-05-27T06:59:30+00:00"
         },
         {
             "name": "symfony/polyfill-php80",

@@ -4,6 +4,7 @@ use Concept\App\Extensions\Twig\AppExtension;
 
 return [
     'view' => [
+        'default_extension' => '.twig',
         'extensions' => [
             AppExtension::class,
         ],

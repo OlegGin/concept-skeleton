@@ -2,6 +2,11 @@
 
 return [
     'routes' => [
-        dirname(__DIR__) . '/routes/web.php',
+        'interceptors' => [
+            // Put your interceptors here
+        ],
+        'list' => [
+            dirname(__DIR__) . '/routes/web.php',
+        ],
     ],
 ];

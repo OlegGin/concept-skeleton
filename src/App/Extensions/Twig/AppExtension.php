@@ -2,8 +2,8 @@
 
 namespace Concept\App\Extensions\Twig;
 
-use Concept\Core\Components\Routing\Contracts\UrlGeneratorInterface;
 use Concept\Core\Components\View\ViewContextResolver;
+use Concept\Core\Http\Routing\Contracts\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFunction;
@@ -43,9 +43,9 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
      */
     public function getFunctions(): array
     {
-            return [
-            new TwigFunction('route', [$this->urlGenerator, 'route']),
-            new TwigFunction('path', [$this->urlGenerator, 'path']),
+        return [
+            new TwigFunction('uri', [$this->urlGenerator, 'uri']),
+            new TwigFunction('url', [$this->urlGenerator, 'url']),
             new TwigFunction('base_url', [$this->urlGenerator, 'base']),
         ];
     }

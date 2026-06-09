@@ -1,18 +1,20 @@
 <?php
 
-use Concept\Core\Components\Path\PathManager;
+use Concept\Core\Foundation\PathName;
 
 return [
-    PathManager::BOOTSTRAP_DIR => 'bootstrap',
-    PathManager::SRC_DIR => 'src',
-    PathManager::CONFIG_DIR => 'config',
-    PathManager::MIGRATIONS_DIR => 'database/migrations',
-    PathManager::SEEDERS_DIR => 'database/seeders',
-    PathManager::PUBLIC_DIR => 'public',
-    PathManager::STORAGE_DIR => 'storage',
-    PathManager::LOGS_DIR => 'storage/logs',
-    PathManager::CACHE_DIR => 'storage/cache',
-    PathManager::RESOURCES_DIR => 'resources',
-    PathManager::VIEWS_DIR => 'resources/views',
-    PathManager::ERRORS_FALLBACK_VIEWS_DIR => 'resources/views/errors/fallback',
+    PathName::BOOTSTRAP => 'bootstrap',
+    PathName::SRC => 'src',
+    PathName::CONFIG => 'config',
+    PathName::MIGRATIONS => 'database/migrations',
+    PathName::SEEDERS => 'database/seeders',
+    PathName::PUBLIC => 'public',
+    PathName::STORAGE => 'storage',
+    PathName::LOGS => 'storage/logs',
+    PathName::CACHE => 'storage/cache',
+    PathName::RESOURCES => 'resources',
+    PathName::LANG => 'resources/lang',
+    PathName::VALIDATOR_TRANSLATIONS => 'resources/lang/validator',
+    PathName::VIEWS => 'resources/views',
+    PathName::ERRORS_FALLBACK_VIEWS => 'resources/views/errors/fallback',
 ];
