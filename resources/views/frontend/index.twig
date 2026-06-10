@@ -20,7 +20,7 @@
         </h1>
         <p class="hero-subtitle mx-auto">
             <strong>Concept Core</strong> is a thin orchestration layer: League Container, League Route,
-            Laminas PSR-7, Twig, Monolog, Whoops, and Illuminate DB — wired through service providers,
+            Laminas PSR-7, Twig or Plates, Monolog, Whoops, and Illuminate DB — wired through service providers,
             not hidden behind magic.
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
@@ -38,8 +38,8 @@
                 <span>core source classes</span>
             </div>
             <div class="landing-stat">
-                <strong>12</strong>
-                <span>providers</span>
+                <strong>17</strong>
+                <span>Service providers</span>
             </div>
             <div class="landing-stat">
                 <strong>9</strong>
@@ -64,11 +64,13 @@
             <span class="stack-pill"><i class="bi bi-box-seam"></i> League Container</span>
             <span class="stack-pill"><i class="bi bi-signpost-split"></i> League Route</span>
             <span class="stack-pill"><i class="bi bi-globe2"></i> Laminas Diactoros</span>
-            <span class="stack-pill"><i class="bi bi-braces"></i> Twig 3</span>
+            <span class="stack-pill"><i class="bi bi-braces"></i> Twig</span>
+            <span class="stack-pill"><i class="bi bi-braces"></i> Plates</span>
+            <span class="stack-pill"><i class="bi bi-database"></i> Illuminate DB</span>
             <span class="stack-pill"><i class="bi bi-journal-text"></i> Monolog</span>
             <span class="stack-pill"><i class="bi bi-bug"></i> Whoops</span>
-            <span class="stack-pill"><i class="bi bi-database"></i> Illuminate DB</span>
             <span class="stack-pill"><i class="bi bi-shield-check"></i> CSRF</span>
+            <span class="stack-pill"><i class="bi bi-check2-square"></i> Rakit Validation</span>
             <span class="stack-pill"><i class="bi bi-sliders"></i> Valinor</span>
             <span class="stack-pill"><i class="bi bi-terminal"></i> Symfony Console</span>
         </div>
@@ -168,7 +170,7 @@ php bin/console route:list</code></pre>
             <span class="section-label">Core capabilities</span>
             <h2 class="fw-bold">Everything in <code>vendor/php-concept/core/src</code></h2>
             <p class="text-muted mx-auto" style="max-width: 640px;">
-                Twelve HTTP providers are enabled by default in <code>bootstrap/providers/app.php</code>.
+                Fifteen HTTP providers are enabled by default in <code>bootstrap/providers/app.php</code>.
                 Comment out modules you do not need yet — DB, validation, components, and the rest stay wired and ready.
             </p>
         </div>
@@ -180,8 +182,8 @@ php bin/console route:list</code></pre>
                 <p class="text-muted mb-3">
                     <code>HttpServiceProvider</code> registers PSR-7 requests, <code>League\Route\Router</code>,
                     <code>RouteStrategy</code> for controller method injection, <code>ResponseFactory</code>,
-                    JSON-aware <code>RequestFormat</code>, and <code>UrlGenerator</code> exposed in Twig as
-                    <code>path()</code>, <code>route()</code>, <code>base_url()</code>.
+                    JSON-aware <code>RequestFormat</code>, and <code>UrlGenerator</code> exposed in Twig (Plates) as
+                    <code>uri()</code>, <code>url()</code>, <code>base_url()</code>.
                 </p>
                 <div class="code-window">
                     <div class="code-window__bar">
@@ -210,15 +212,6 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
             </article>
 
             <article class="bento-card">
-                <div class="bento-card__icon"><i class="bi bi-layout-text-window"></i></div>
-                <h3 class="fw-bold h5">Twig views</h3>
-                <p class="text-muted small mb-0">
-                    Namespaced paths (<code>@frontend/…</code>), optional view cache, context resolver per route,
-                    extension registry, and <code>ViewResponseFactory</code> for clean controllers.
-                </p>
-            </article>
-
-            <article class="bento-card">
                 <div class="bento-card__icon"><i class="bi bi-gear"></i></div>
                 <h3 class="fw-bold h5">Config &amp; .env</h3>
                 <p class="text-muted small mb-0">
@@ -227,11 +220,40 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
                 </p>
             </article>
 
+            <article class="bento-card bento-card--wide">
+                <div class="bento-card__icon"><i class="bi bi-layers"></i></div>
+                <h3 class="fw-bold h5">HTTP middleware</h3>
+                <p class="text-muted small mb-0">
+                    Six PSR-15 middlewares ship with Core: CSRF, JSON body parsing, validation exceptions,
+                    shared view data, forced JSON responses, and previous URL storage. Stack them on routes or groups.
+                </p>
+            </article>
+
+            <article class="bento-card">
+                <div class="bento-card__icon"><i class="bi bi-layout-text-window"></i></div>
+                <h3 class="fw-bold h5">Twig views</h3>
+                <p class="text-muted small mb-0">
+                    <code>ViewRegistryServiceProvider</code> + <code>TwigServiceProvider</code>: namespaced paths
+                    (<code>@frontend/…</code>), optional view cache, context resolver per route, extension registry,
+                    and <code>ViewResponseFactory</code> for clean controllers.
+                </p>
+            </article>
+
+            <article class="bento-card">
+                <div class="bento-card__icon"><i class="bi bi-filetype-php"></i></div>
+                <h3 class="fw-bold h5">Plates views</h3>
+                <p class="text-muted small mb-0">
+                    <code>PlatesServiceProvider</code> swaps Twig for native <code>.php</code> templates —
+                    <code>frontend::…</code> namespaces, layouts, and <code>$this-&gt;e()</code> escaping.
+                    Register one view engine only.
+                </p>
+            </article>
+
             <article class="bento-card">
                 <div class="bento-card__icon"><i class="bi bi-exclamation-triangle"></i></div>
                 <h3 class="fw-bold h5">Error handling</h3>
                 <p class="text-muted small mb-0">
-                    Early bootstrap Whoops + fallback PHP views; production Twig error pages;
+                    Early bootstrap Whoops + fallback PHP views; production Twig (Plates) error pages;
                     <code>ErrorLogHandler</code> writes to rotating <code>storage/logs</code>.
                 </p>
             </article>
@@ -241,8 +263,8 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
                 <h3 class="fw-bold h4 mb-2">Database layer</h3>
                 <p class="text-muted mb-0">
                     <code>DatabaseServiceProvider</code> brings Illuminate Connection / Eloquent, migration and seeder
-                    registries, and artisan-style CLI: <code>db:migrate</code>, <code>db:rollback</code>, <code>db:seed</code>.
-                    Enable the provider when your app is ready for persistence.
+                    registries, and CLI commands: <code>db:migrate</code>, <code>db:rollback</code>, <code>db:seed</code>,
+                    <code>migration:list</code>. Comment it out in <code>bootstrap/providers/app.php</code> if you do not need persistence yet.
                 </p>
             </article>
 
@@ -268,17 +290,17 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
                 <div class="bento-card__icon"><i class="bi bi-eye-slash"></i></div>
                 <h3 class="fw-bold h5">Log masking</h3>
                 <p class="text-muted small mb-0">
-                    <code>MaskerServiceProvider</code> redacts sensitive fields in Monolog context
+                    <code>DataMaskerServiceProvider</code> redacts sensitive fields in Monolog context
                     before they hit disk — passwords, tokens, PII patterns.
                 </p>
             </article>
 
             <article class="bento-card">
                 <div class="bento-card__icon"><i class="bi bi-broadcast"></i></div>
-                <h3 class="fw-bold h5">Events &amp; telemetry</h3>
+                <h3 class="fw-bold h5">Telemetry</h3>
                 <p class="text-muted small mb-0">
-                    League Event dispatcher, <code>ServiceAwakening</code> hooks, HTTP/view/DB lifecycle events,
-                    and <code>ApplicationTelemetryBuffer</code> for spans and profiling.
+                    <code>TelemetryServiceProvider</code> wires <code>TelemetryCollector</code> for bootstrap milestones,
+                    HTTP/view/DB lifecycle marks, and in-request spans when <code>telemetry.enabled</code> is true.
                 </p>
             </article>
         </div>
@@ -376,8 +398,8 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
     └── ProjectManager/</code></pre>
                     </div>
                     <p class="text-muted small mb-0">
-                        Register modules in <code>config/components.php</code>. Enable
-                        <code>ComponentsServiceProvider</code> when you need plug-in modules.
+                        Register modules in <code>config/components.php</code>.
+                        <code>ComponentsServiceProvider</code> is already enabled in this skeleton.
                     </p>
                 </article>
             </div>
@@ -435,26 +457,33 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
                 <div class="provider-board" id="provider-board">
                     {% set providers = [
                         'ConfigServiceProvider',
+                        'LocaleServiceProvider',
+                        'TelemetryServiceProvider',
                         'ErrorHandlerServiceProvider',
-                        'EventServiceProvider',
                         'HttpServiceProvider',
                         'SessionServiceProvider',
+                        'DataMaskerServiceProvider',
                         'LogServiceProvider',
-                        'ViewServiceProvider',
-                        'MaskerServiceProvider',
+                        'ViewRegistryServiceProvider',
+                        'PlatesServiceProvider',
+                        'TwigServiceProvider',
                         'ValidationServiceProvider',
                         'DatabaseServiceProvider',
                         'CastingServiceProvider',
+                        'DebugLoggerServiceProvider',
                         'ComponentsServiceProvider',
                     ] %}
                     {% for provider in providers %}
-                    <div class="provider-chip provider-chip--on">
+                    <div class="provider-chip {{ provider == 'PlatesServiceProvider' ? 'provider-chip--off' : 'provider-chip--on' }}">
                         <span class="provider-chip__label">{{ provider }}</span>
                         <label class="provider-switch">
                             <input type="checkbox"
                                    class="provider-toggle"
                                    data-provider="{{ provider }}"
-                                   checked
+                                   {% if provider in ['PlatesServiceProvider', 'TwigServiceProvider'] %}
+                                   data-exclusive-group="view-engine"
+                                   {% endif %}
+                                   {% if provider != 'PlatesServiceProvider' %}checked{% endif %}
                                    aria-label="Toggle {{ provider }}">
                             <span class="provider-switch__track" aria-hidden="true">
                                 <span class="provider-switch__thumb"></span>
@@ -475,16 +504,19 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
                     </div>
                     <pre><code class="language-php" id="provider-code">return [
     ConfigServiceProvider::class,
+    LocaleServiceProvider::class,
+    TelemetryServiceProvider::class,
     ErrorHandlerServiceProvider::class,
-    EventServiceProvider::class,
     HttpServiceProvider::class,
     SessionServiceProvider::class,
+    DataMaskerServiceProvider::class,
     LogServiceProvider::class,
-    ViewServiceProvider::class,
-    MaskerServiceProvider::class,
+    ViewRegistryServiceProvider::class,
+    TwigServiceProvider::class,
     ValidationServiceProvider::class,
     DatabaseServiceProvider::class,
     CastingServiceProvider::class,
+    DebugLoggerServiceProvider::class,
     ComponentsServiceProvider::class,
 ];</code></pre>
                 </div>
@@ -554,7 +586,7 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
                             <span class="pipeline-step__num">4</span>
                             <div>
                                 <h6 class="fw-bold mb-1">Response emit</h6>
-                                <p class="text-muted small mb-0">HTML via Twig, JSON via <code>ResponseFactory</code>, emitted with Laminas SAPI runner.</p>
+                                <p class="text-muted small mb-0">HTML via Twig or Plates, JSON via <code>ResponseFactory</code>, emitted with Laminas SAPI runner.</p>
                             </div>
                         </div>
                     </div>
@@ -601,7 +633,7 @@ $router->get('/', [IndexController::class, 'index'])->setName('home');</code></p
             </div>
         </div>
 
-        <div class="row g-5 align-items-center flex-lg-row-reverse mb-5">
+        <div class="row g-5 align-items-center flex-lg-row-reverse">
             <div class="col-lg-5">
                 <h3 class="fw-bold h4">DTOs &amp; casting</h3>
                 <p class="text-muted">
@@ -626,13 +658,31 @@ final class CreateTaskDto extends Dto
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="row g-5 align-items-center">
+{# ── Views ── #}
+<section class="content-block" id="views">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-label">View engines</span>
+            <h2 class="fw-bold">Twig or Plates — pick one</h2>
+            <p class="text-muted mx-auto mb-0" style="max-width: 640px;">
+                Register <code>TwigServiceProvider</code> or <code>PlatesServiceProvider</code> in
+                <code>bootstrap/providers/app.php</code>. <code>ViewRegistryServiceProvider</code> and
+                <code>config/view.php</code> stay the same — paths, contexts, and extensions work with either engine.
+            </p>
+        </div>
+
+        <div class="row g-5 align-items-center mb-5">
             <div class="col-lg-5">
-                <h3 class="fw-bold h4">Twig extensions</h3>
+                <h3 class="fw-bold h4">Twig</h3>
                 <p class="text-muted">
-                    Register app extensions in <code>config/view.php</code>. This skeleton adds
-                    <code>AppExtension</code> for URL helpers and route namespace globals.
+                    Default in this skeleton: <code>.twig</code> templates, compiled cache in production,
+                    and Twig extensions such as <code>AppExtension</code> for URL helpers.
+                </p>
+                <p class="text-muted small mb-0">
+                    Namespaced views use the <code>@frontend/…</code> syntax.
                 </p>
             </div>
             <div class="col-lg-7">
@@ -641,19 +691,66 @@ final class CreateTaskDto extends Dto
                         <span class="code-window__dot" style="background:#ff5f56"></span>
                         <span class="code-window__dot" style="background:#ffbd2e"></span>
                         <span class="code-window__dot" style="background:#27c93f"></span>
+                        <span class="code-window__title">Twig</span>
                     </div>
-                    <pre><code class="language-php">'extensions' => [
-    AppExtension::class,
-],
+                    <pre><code class="language-php">{% verbatim %}// bootstrap/providers/app.php
+ViewRegistryServiceProvider::class,
+TwigServiceProvider::class,
 
-public function getFunctions(): array
-{
-    return [
-        new TwigFunction('route', [$this->urlGenerator, 'route']),
-        new TwigFunction('path', [$this->urlGenerator, 'path']),
-        new TwigFunction('base_url', [$this->urlGenerator, 'base']),
-    ];
-}</code></pre>
+// config/view.php
+'view' => [
+    'default_extension' => '.twig',
+    'extensions' => [
+        AppExtension::class,
+    ],
+    'paths' => [
+        'frontend' => '/resources/views/frontend',
+    ],
+    'contexts' => [
+        '/' => 'frontend',
+    ],
+    'cache_dir' => 'views',
+]{% endverbatim %}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-5 align-items-center flex-lg-row-reverse">
+            <div class="col-lg-5">
+                <h3 class="fw-bold h4">Plates</h3>
+                <p class="text-muted">
+                    Swap to <code>PlatesServiceProvider</code> for native PHP templates — no compile step,
+                    familiar <code>.php</code> files with layout sections and escaping via <code>$this-&gt;e()</code>.
+                </p>
+                <p class="text-muted small mb-0">
+                    Namespaced views use the <code>frontend::…</code> syntax. Register one engine only, not both.
+                </p>
+            </div>
+            <div class="col-lg-7">
+                <div class="code-window">
+                    <div class="code-window__bar">
+                        <span class="code-window__dot" style="background:#ff5f56"></span>
+                        <span class="code-window__dot" style="background:#ffbd2e"></span>
+                        <span class="code-window__dot" style="background:#27c93f"></span>
+                        <span class="code-window__title">Plates</span>
+                    </div>
+                    <pre><code class="language-php">{% verbatim %}// bootstrap/providers/app.php
+ViewRegistryServiceProvider::class,
+PlatesServiceProvider::class,
+
+// config/view.php
+'view' => [
+    'default_extension' => '.php',
+    'extensions' => [
+        AppExtension::class,
+    ],
+    'paths' => [
+        'frontend' => '/resources/views/plates/frontend',
+    ],
+    'contexts' => [
+        '/' => 'frontend',
+    ],
+]{% endverbatim %}</code></pre>
                 </div>
             </div>
         </div>
@@ -702,11 +799,11 @@ public function getFunctions(): array
                         <td class="text-muted">Execute database seeders</td>
                     </tr>
                     <tr>
-                        <td><code>db:migration:list</code></td>
+                        <td><code>migration:list</code></td>
                         <td class="text-muted">Show migration status</td>
                     </tr>
                     <tr>
-                        <td><code>db:seeders:list</code></td>
+                        <td><code>seeders:list</code></td>
                         <td class="text-muted">List available seeders</td>
                     </tr>
                     <tr>
@@ -811,10 +908,10 @@ public function getFunctions(): array
         <div class="row g-5 align-items-center">
             <div class="col-lg-12">
                 <span class="section-label">Observability</span>
-                <h2 class="fw-bold mb-3">Logs, events, and safe failures</h2>
+                <h2 class="fw-bold mb-3">Logs, telemetry, and safe failures</h2>
                 <p class="text-muted mb-4">
-                    Production errors render Twig error templates per status code, then fall back to
-                    plain PHP views in <code>resources/views/errors/fallback/</code> if Twig is unavailable.
+                    Production errors render Twig (Plates) error templates per status code, then fall back to
+                    plain PHP views in <code>resources/views/errors/fallback/</code> if Twig (Plates) is unavailable.
                 </p>
                 <div class="row g-3">
                     <div class="col-sm-4">
@@ -827,16 +924,17 @@ public function getFunctions(): array
                     <div class="col-sm-4">
                         <div class="feature-card p-4 h-100 mb-0">
                             <i class="bi bi-activity feature-icon"></i>
-                            <h5 class="fw-bold">Lifecycle events</h5>
-                            <p class="text-muted small mb-0">Router dispatch, template render, query executed — hook telemetry or custom listeners.</p>
+                            <h5 class="fw-bold">Lifecycle telemetry</h5>
+                            <p class="text-muted small mb-0">Provider awakening, template render, DB queries — recorded by <code>TelemetryCollector</code> when enabled.</p>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="feature-card p-4 h-100 mb-0">
-                            <i class="bi bi-diagram-3 feature-icon"></i>
-                            <h5 class="fw-bold">Telemetry buffer</h5>
+                            <i class="bi bi-shield-check feature-icon"></i>
+                            <h5 class="fw-bold">Safe failures</h5>
                             <p class="text-muted small mb-0">
-                                <code>ApplicationTelemetryBuffer</code> collects structured events for in-request inspection (counts, records, and spans).
+                                Whoops in dev; production Twig (Plates) error pages per status code with PHP fallbacks in
+                                <code>resources/views/errors/fallback/</code> — no stack traces leaked to users.
                             </p>
                         </div>
                     </div>

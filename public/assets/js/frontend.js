@@ -109,9 +109,46 @@ function initProviderBoard() {
         chip.classList.toggle('provider-chip--off', !toggle.checked);
     };
 
+    const getExclusiveGroupToggles = function(toggle) {
+        const group = toggle.dataset.exclusiveGroup;
+        if (!group) {
+            return [];
+        }
+
+        return Array.from(
+            board.querySelectorAll('.provider-toggle[data-exclusive-group="' + group + '"]')
+        );
+    };
+
+    const applyExclusiveGroupRules = function(changedToggle) {
+        const groupToggles = getExclusiveGroupToggles(changedToggle);
+        if (groupToggles.length === 0) {
+            return;
+        }
+
+        if (changedToggle.checked) {
+            groupToggles.forEach(function(toggle) {
+                if (toggle !== changedToggle) {
+                    toggle.checked = false;
+                    syncChipState(toggle);
+                }
+            });
+            return;
+        }
+
+        const anyChecked = groupToggles.some(function(toggle) {
+            return toggle.checked;
+        });
+
+        if (!anyChecked) {
+            changedToggle.checked = true;
+        }
+    };
+
     board.querySelectorAll('.provider-toggle').forEach(function(toggle) {
         syncChipState(toggle);
         toggle.addEventListener('change', function() {
+            applyExclusiveGroupRules(toggle);
             syncChipState(toggle);
             renderProviderCode();
         });

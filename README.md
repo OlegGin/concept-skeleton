@@ -1,6 +1,6 @@
 # Concept Skeleton
 
-Minimal starter application for [Concept Core](https://github.com/php-concept/concept-core) — a PHP framework built from proven libraries (League Container, League Route, Laminas PSR-7, Twig, Monolog, Illuminate DB) wired through service providers instead of magic.
+Minimal starter application for [Concept Core](https://github.com/php-concept/concept-core) — a PHP framework built from proven libraries (League Container, League Route, Laminas PSR-7, Twig, Monolog, Whoops, Illuminate DB) wired through service providers instead of magic.
 
 This repository ships a working HTTP + Twig landing page, a component-oriented `src/App/` layout, and optional providers you can enable as the project grows.
 
@@ -16,6 +16,8 @@ This repository ships a working HTTP + Twig landing page, a component-oriented `
 git clone https://github.com/php-concept/concept-skeleton.git app-name
 cd app-name
 
+composer install
+
 cp .env.example .env
 # Edit .env — set APP_ENV, database credentials, etc.
 
@@ -23,7 +25,7 @@ cp .env.example .env
 # Or use Docker (see below)
 ```
 
-Open the app in a browser. The home route (`/`) renders the Concept Core landing page.
+Open the app in a browser. The home route (`/`) renders the Concept Skeleton landing page.
 
 ## Docker
 
@@ -71,7 +73,6 @@ This skeleton uses a **component-ready** layout with shared code under `src/App/
 src/App/
 ├── Controllers/
 ├── Extensions/Twig/
-├── Models/
 └── …
 ```
 
@@ -81,22 +82,27 @@ Alternative structures (layered MVC, modular components) are described in the [C
 
 HTTP providers are registered in `bootstrap/providers/app.php`. Console commands use a separate stack in `bootstrap/providers/console.php`.
 
-All twelve core providers are enabled by default in this skeleton:
+Fifteen HTTP providers are enabled by default in this skeleton (`bootstrap/providers/app.php`):
 
 | Provider | Role |
 |----------|------|
 | `ConfigServiceProvider` | Config dirs, `.env`, env overrides |
+| `LocaleServiceProvider` | Locale resolution for validation messages |
+| `TelemetryServiceProvider` | Bootstrap and request telemetry hooks |
 | `ErrorHandlerServiceProvider` | Whoops / production error pages |
-| `EventServiceProvider` | Event dispatcher |
 | `HttpServiceProvider` | PSR-7, router, middleware |
 | `SessionServiceProvider` | Session handling |
+| `DataMaskerServiceProvider` | Sensitive field redaction in logs |
 | `LogServiceProvider` | Monolog |
-| `ViewServiceProvider` | Twig |
-| `MaskerServiceProvider` | Sensitive field redaction in logs |
+| `ViewRegistryServiceProvider` | View paths, extensions, contexts |
+| `TwigServiceProvider` | Twig engine |
 | `ValidationServiceProvider` | Request validation |
 | `DatabaseServiceProvider` | Illuminate DB / Eloquent |
 | `CastingServiceProvider` | Valinor DTO mapping |
+| `DebugLoggerServiceProvider` | In-memory debug log (dev tools) |
 | `ComponentsServiceProvider` | Pluggable modules |
+
+`ConsoleServiceProvider` is registered separately in `bootstrap/providers/console.php` (not part of the HTTP boot).
 
 Comment out providers you do not need yet to keep boot lean.
 
@@ -112,7 +118,7 @@ Example route:
 $router->get('/', [IndexController::class, 'index'])->setName('home');
 ```
 
-Twig helpers (`path()`, `route()`, `base_url()`) come from `AppExtension`.
+Twig helpers (`uri()`, `url()`, `base_url()`) come from `AppExtension`.
 
 ## Frontend assets
 
@@ -132,21 +138,27 @@ The landing page uses **Highlight.js** (`github-dark` theme) for code samples. T
 ```bash
 php bin/console route:list
 php bin/console view:clear
-php bin/console db:migrate      # when DatabaseServiceProvider is enabled
+php bin/console db:migrate
+php bin/console db:rollback
+php bin/console migration:list
+php bin/console db:seed
+php bin/console seeders:list
+php bin/console component:list
+php bin/console component:publish-assets
 ```
 
 Available commands depend on which providers are registered in `bootstrap/providers/console.php`.
 
 ## Configuration
 
-| File | Description |
-|------|-------------|
-| `.env` | Environment variables (not committed) |
-| `config/app.php` | App name, timezone, locale, debug |
-| `config/db.php` | Database connection |
-| `config/view.php` | Twig paths, extensions, cache |
-| `config/log.php` | Log level and retention |
-| `config/dev/` / `config/production/` | Env-specific overrides |
+| File | Description                            |
+|------|----------------------------------------|
+| `.env` | Environment variables (not committed)  |
+| `config/app.php` | App name, timezone, locale, debug      |
+| `config/db.php` | Database connection                    |
+| `config/view.php` | Twig (Plates) paths, extensions, cache |
+| `config/log.php` | Log level and retention                |
+| `config/dev/` / `config/production/` | Env-specific overrides                 |
 
 ## Static analysis
 
@@ -162,6 +174,15 @@ Configuration: `phpstan.neon` (level 10).
 - [Directory structure](https://php-concept.github.io/concept-docs/en/directory-structure.html)
 - [Core repository](https://github.com/php-concept/concept-core)
 
+---
+
 ## License
 
-Follow the license terms of [php-concept/core](https://github.com/php-concept/concept-core) and bundled dependencies.
+MIT © Concept Framework contributors.
+
+---
+
+<p align="center">
+  <strong>Concept Framework</strong> — small kernel, sharp edges, infinite composition.<br>
+  Build the app. Ship the component. Repeat.
+</p>
