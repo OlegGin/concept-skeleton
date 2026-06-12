@@ -2,7 +2,7 @@
 
 namespace Concept\App\Controllers;
 
-use Concept\Core\Components\View\Contracts\ViewResponseFactoryInterface;
+use Concept\Core\Services\View\Contracts\ViewResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class IndexController

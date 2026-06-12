@@ -2,8 +2,8 @@
 
 namespace Concept\App\Extensions\Twig;
 
-use Concept\Core\Components\View\ViewContextResolver;
 use Concept\Core\Http\Routing\Contracts\UrlGeneratorInterface;
+use Concept\Core\Services\View\ViewContextResolver;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFunction;

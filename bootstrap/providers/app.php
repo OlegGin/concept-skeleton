@@ -1,20 +1,20 @@
 <?php declare(strict_types=1);
 
-use Concept\Core\Providers\CastingServiceProvider;
-use Concept\Core\Providers\ComponentsServiceProvider;
-use Concept\Core\Providers\ConfigServiceProvider;
-use Concept\Core\Providers\DatabaseServiceProvider;
-use Concept\Core\Providers\DataMaskerServiceProvider;
-use Concept\Core\Providers\DebugLoggerServiceProvider;
-use Concept\Core\Providers\ErrorHandlerServiceProvider;
-use Concept\Core\Providers\HttpServiceProvider;
-use Concept\Core\Providers\LocaleServiceProvider;
-use Concept\Core\Providers\LogServiceProvider;
-use Concept\Core\Providers\SessionServiceProvider;
-use Concept\Core\Providers\TelemetryServiceProvider;
-use Concept\Core\Providers\TwigServiceProvider;
-use Concept\Core\Providers\ValidationServiceProvider;
-use Concept\Core\Providers\ViewRegistryServiceProvider;
+use Concept\Core\Providers\Bootstrap\ConfigServiceProvider;
+use Concept\Core\Providers\Bootstrap\ErrorHandlerServiceProvider;
+use Concept\Core\Providers\Component\ComponentsServiceProvider;
+use Concept\Core\Providers\Database\DatabaseServiceProvider;
+use Concept\Core\Providers\Http\HttpServiceProvider;
+use Concept\Core\Providers\Http\SessionServiceProvider;
+use Concept\Core\Providers\Logging\DebugLoggerServiceProvider;
+use Concept\Core\Providers\Logging\LogServiceProvider;
+use Concept\Core\Providers\Support\CastingServiceProvider;
+use Concept\Core\Providers\Support\DataMaskerServiceProvider;
+use Concept\Core\Providers\Support\LocaleServiceProvider;
+use Concept\Core\Providers\Support\ValidationServiceProvider;
+use Concept\Core\Providers\Telemetry\TelemetryServiceProvider;
+use Concept\Core\Providers\View\TwigServiceProvider;
+use Concept\Core\Providers\View\ViewRegistryServiceProvider;
 
 return [
     ConfigServiceProvider::class,
