@@ -26,6 +26,5 @@ return [
         RouteListCommand::class,
 
         // Custom Business Commands
-        // put your custom commands here
     ],
 ];

@@ -3,5 +3,7 @@
 return [
     'telemetry' => [
         'enabled' => true,
+        'db_queries' => true,
+        'logs' => true,
     ],
 ];

@@ -5,7 +5,7 @@ return [
         'name' => 'app',
         'level' => 'ERROR',
         'max_files' => 7,
-        'query' => false,
+        'db_queries' => false,
         'validation_data' => false,
     ],
 ];
