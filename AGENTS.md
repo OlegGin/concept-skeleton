@@ -1,6 +1,6 @@
 # AGENTS.md — маніфест для ШІ
 
-Інструкції для ШІ-агентів (Cursor та ін.) при роботі з **concept-skeleton-dev** — демо-застосунком на [Concept Core](https://github.com/php-concept/core) (`php-concept/core`).
+Інструкції для ШІ-агентів (Cursor та ін.) при роботі з **concept-skeleton** — демо-застосунком на [Concept Core](https://github.com/php-concept/core) (`php-concept/core`).
 
 ## Про проєкт
 
